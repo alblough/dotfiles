@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -e
+trap "rm -f .git/tags.$$ .git/types.vim.$$" EXIT
+
+# Generate Tags
+ctags --tag-relative --fields=+l --c-kinds=+p --extra=+q -Rf.git/tags.$$ --exclude=.git --languages=-javascript,sql,html #`pwd`
+# Create Types from Tags
+awk '/.+\t.+\t.+;"\td\t.+/ { printf("syntax keyword Macro\t%s\n",      $1) }' .git/tags.$$ >  .git/types.vim.$$
+awk '/.+\t.+\t.+;"\te\t.+/ { printf("syntax keyword Constant\t%s\n",   $1) }' .git/tags.$$ >> .git/types.vim.$$
+awk '/.+\t.+\t.+;"\tf\t.+/ { printf("syntax keyword Function\t%s\n",   $1) }' .git/tags.$$ >> .git/types.vim.$$
+awk '/.+\t.+\t.+;"\tm\t.+/ { printf("syntax keyword Tag\t%s\n",        $1) }' .git/tags.$$ >> .git/types.vim.$$
+awk '/.+\t.+\t.+;"\tt\t.+/ { printf("syntax keyword Typedef\t%s\n",    $1) }' .git/tags.$$ >> .git/types.vim.$$
+awk '/.+\t.+\t.+;"\tu\t.+/ { printf("syntax keyword Structure\t%s\n",  $1) }' .git/tags.$$ >> .git/types.vim.$$
+
+# Move Temp Files
+mv .git/tags.$$ .git/tags
+mv .git/types.vim.$$ .git/types.vim

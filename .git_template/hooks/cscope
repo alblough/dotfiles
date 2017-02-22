@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+trap "rm -f .git/cscope.out.$$" EXIT
+find . \( -name '*.[ch]' \) -print \
+    -o -path "./.git" -prune \
+    -o -path "./tmp" -prune | \
+    cscope -R -b -i - -f .git/cscope.out.$$
+mv -f .git/cscope.out.$$ .git/cscope.out

@@ -1,0 +1,3 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/nfs/fm/disks/fm_cto_n160201/global_work/p11/alblough/DS4/zoe/firmware/cutest'
