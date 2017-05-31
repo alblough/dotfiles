@@ -167,7 +167,7 @@ set nowrap             "disable auto-wrap
 "set columns=88
 set textwidth=80        "define maximum line width
 set colorcolumn=81      "highlights column 81 as a visual barrier
-set showbreak=↪         "uses special character to display wrap
+set showbreak="\u21aa " "uses special character to display wrap
 set linebreak           "splits on word boundary, not character
 
 "search/replace
@@ -361,7 +361,20 @@ nnoremap <C-q> :call IncBlock()<cr>
 autocmd BufNewFile,BufRead *.do,*.sdc setf tcl
 
 "Add folds to preproc stuff
-"autocmd BufRead,BufNewFile *.[ch] syn region cDefFold start="\#if" end="\#endif" transparent fold
+autocmd BufNewFile,BufRead *.[ch]{,pp} syntax region poundIf
+			\ start=/^\s*#\s*if\(def\)\?/
+			\ end=/^\s*#\s*e\(lse\|lif\|ndif\)/me=s-1,he=s-1,re=s-1
+			\ transparent fold contains=cPreProc,poundIf,poundElIf,poundElse
+
+autocmd BufNewFile,BufRead *.[ch]{,pp} syntax region poundElIf
+			\ start=/^\s*#\s*elif/
+			\ end=/^\s*#\s*e\(lse\|lif\|ndif\)/me=s-1,he=s-1,re=s-1
+			\ transparent fold contains=cPreProc,poundElIf,poundElse
+
+autocmd BufNewFile,BufRead *.[ch]{,pp} syntax region poundElse
+			\ start=/^\s*#\s*else/
+			\ end=/^\s*#\s*endif/me=s-1,he=s-1,re=s-1
+			\ transparent fold contains=cPreProc
 
 "Add custom types if they exist
 autocmd BufRead,BufNewFile *.[ch] if filereadable('.git/types.vim')

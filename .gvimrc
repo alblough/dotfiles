@@ -7,7 +7,7 @@ else
     if s:uname == "Darwin\n"
       "MAC STUFF HERE
     elseif s:uname == "Linux\n"
-      set guifont=Inconsolata\ for\ Powerline\ 12
+      set guifont=Inconsolata\ for\ Powerline\ 14
     endif
   endif
 endif
