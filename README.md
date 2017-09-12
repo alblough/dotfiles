@@ -10,17 +10,17 @@ Includes dotfile configurations for
 Installation
 ============
 Download the repository, make sure to use the recursive argument to pull down
-the submodules as well_::
+the submodules as well:
 
-$ git clone --recursive https://github.com/alblough/dotfiles.git
+> $ git clone --recursive https://github.com/alblough/dotfiles.git
 
 Run the initialization script, which will backup all current copies of the
 configuration files it is replacing, and soft link to the files in this repo to
-your $HOME directory_::
+your $HOME directory:
 
-$ ./init.sh
+> $ ./init.sh
 
-Manually add the following to your local .bashrc file_::
+Manually add the following to your local .bashrc file:
 
 ```bash
 if [ -f ${HOME}/.bashrc.${USER} ]; then
