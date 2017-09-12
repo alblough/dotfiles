@@ -1,0 +1,4 @@
+. ${HOME}/.git-completion.bash
+
+export PATH=${PATH}:${HOME}/.vim/bundle/powerline/scripts
+. ${HOME}/.vim/bundle/powerline/powerline/bindings/bash/powerline.sh

@@ -1,6 +1,6 @@
 #!/bin/bash 
-dotfiles=(".aliases" ".bindings" ".ctags" ".gvimrc" ".vimrc" ".git-completion.bash")
-dotfiles_user=(".profile")
+dotfiles=(".bash_aliases" ".bindings" ".ctags" ".gvimrc" ".vimrc" ".git-completion.bash")
+dotfiles_user=(".bashrc")
 dotdirs=(".vim" ".git_template" ".fonts" ".fonts.conf.d")
 
 success=1
